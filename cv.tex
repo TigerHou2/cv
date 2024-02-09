@@ -1,32 +1,12 @@
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-%	The MIT License (MIT)
-%
-%	Copyright (c) 2021 Jitin Nair
-%
-%	Permission is hereby granted, free of charge, to any person obtaining a copy
-%	of this software and associated documentation files (the "Software"), to deal
-%	in the Software without restriction, including without limitation the rights
-%	to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-%	copies of the Software, and to permit persons to whom the Software is
-%	furnished to do so, subject to the following conditions:
-%	
-%	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-%	IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-%	FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-%	AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-%	LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-%	OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-%	THE SOFTWARE.
-%	
-%
-%-----------------------------------------------------------------------------------------------------------------------------------------------%
-
+% Inspired by: 
+% 	- https://rahil-makadia.github.io/
+%	- https://github.com/jitinnair1/autocv
 %----------------------------------------------------------------------------------------
 %	DOCUMENT DEFINITION
 %----------------------------------------------------------------------------------------
 
 % article class because we want to fully customize the page and not use a cv template
-\documentclass[a4paper,12pt]{article}
+\documentclass[letterpaper,12pt]{article}
 
 %----------------------------------------------------------------------------------------
 %	FONT
@@ -82,136 +62,244 @@
 \titlespacing{\section}{0pt}{10pt}{10pt}
 
 %for publications
-\usepackage[style=authoryear,sorting=ynt, maxbibnames=2]{biblatex}
+\usepackage[backend=biber,style=phys,sorting=none,maxbibnames=3]{biblatex}
+%%%%%%%%%% begin reverse numbering for biblatex %%%%%%%%%%
+% Count total number of entries in each refsection
+\AtDataInput{
+	\csnumgdef{entrycount:\therefsection}{
+		\csuse{entrycount:\therefsection}+1}
+}
+% Print the labelnumber as the total number of entries in the
+% current refsection, minus the actual labelnumber, plus one
+\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}    
+\newrobustcmd*{\mkbibdesc}[1]{%
+	\number\numexpr\csuse{entrycount:\therefsection}+1-#1\relax}
+%%%%%%%%%% end reverse numbering for biblatex %%%%%%%%%%
 
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
 \definecolor{linkcolour}{rgb}{0,0.2,0.6}
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
-\addbibresource{citations.bib}
+\addbibresource{pub_journal.bib}
+\addbibresource{pub_conference.bib}
 \setlength\bibitemsep{1em}
 
 %for social icons
 \usepackage{fontawesome5}
 
-%debug page outer frames
-%\usepackage{showframe}
-
-
-% job listing environments
-\newenvironment{jobshort}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    }
-    {
-    }
-
-\newenvironment{joblong}[2]
-    {
-    \begin{tabularx}{\linewidth}{@{}l X r@{}}
-    \textbf{#1} & \hfill &  #2 \\[3.75pt]
-    \end{tabularx}
-    \begin{minipage}[t]{\linewidth}
-    \begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt,label=--]
-    }
-    {
-    \end{itemize}
-    \end{minipage}    
-    }
-
-
+%flag for digital CV
+\newif\ifdigital
 
 %----------------------------------------------------------------------------------------
 %	BEGIN DOCUMENT
 %----------------------------------------------------------------------------------------
 \begin{document}
-
-% non-numbered pages
-\pagestyle{empty} 
-
-%----------------------------------------------------------------------------------------
-%	TITLE
-%----------------------------------------------------------------------------------------
-
-% \begin{tabularx}{\linewidth}{ @{}X X@{} }
-% \huge{Your Name}\vspace{2pt} & \hfill \emoji{incoming-envelope} email@email.com \\
-% \raisebox{-0.05\height}\faGithub\ username \ | \
-% \raisebox{-0.00\height}\faLinkedin\ username \ | \ \raisebox{-0.05\height}\faGlobe \ mysite.com  & \hfill \emoji{calling} number
-% \end{tabularx}
-
-\begin{tabularx}{\linewidth}{@{} C @{}}
-\Huge{Your Name} \\[7.5pt]
-\href{https://github.com/username}{\raisebox{-0.05\height}\faGithub\ username} \ $|$ \ 
-\href{https://linkedin.com/in/username}{\raisebox{-0.05\height}\faLinkedin\ username} \ $|$ \ 
-\href{https://mysite.com}{\raisebox{-0.05\height}\faGlobe \ mysite.com} \ $|$ \ 
-\href{mailto:email@mysite.com}{\raisebox{-0.05\height}\faEnvelope \ email@mysite.com} \ $|$ \ 
-\href{tel:+000000000000}{\raisebox{-0.05\height}\faMobile \ +00.00.000.000} \\
-\end{tabularx}
-
-%----------------------------------------------------------------------------------------
-% EXPERIENCE SECTIONS
-%----------------------------------------------------------------------------------------
-
-%Interests/ Keywords/ Summary
-\section{Summary}
-This CV is automatically generated and deployed using the \href{https://github.com/jitinnair1/autoCV}{autoCV} template along with GitHub Actions such that a new version of the CV is compiled, published and ready for use when the cv.tex file is updated. For details, \href{https://github.com/jitinnair1/autoCV}{click here}.
-
-%Experience
-\section{Work Experience}
-
-\begin{jobshort}{Designation}{Jan 2021 - present}
-long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width
-\end{jobshort}
-
-
-\begin{joblong}{Designation}{Mar 2019 - Jan 2021}
-\item long long line of blah blah that will wrap when the table fills the column width
-\item again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah. again, long long line of blah blah that will wrap when the table fills the column width but this time even more long long line of blah blah
-\end{joblong}
-  
-%Projects
-\section{Projects}
-
-\begin{tabularx}{\linewidth}{ @{}l r@{} }
-\textbf{Some Project} & \hfill \href{https://some-link.com}{Link to Demo} \\[3.75pt]
-\multicolumn{2}{@{}X@{}}{long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width long long line of blah blah that will wrap when the table fills the column width}  \\
-\end{tabularx}
-
-%----------------------------------------------------------------------------------------
-%	EDUCATION
-%----------------------------------------------------------------------------------------
-\section{Education}
-\begin{tabularx}{\linewidth}{@{}l X@{}}	
-2030 - present & PhD (Subject) at \textbf{University} \hfill \normalsize (GPA: 4.0/4.0) \\
-
-2023 - 2027 & Bachelor's Degree at \textbf{College} \hfill (GPA: 4.0/4.0) \\ 
-
-2022 & Class 12th Some Board \hfill  (Grades) \\
-
-2021 & Class 10th Some Board \hfill  (Grades) \\
-\end{tabularx}
-
-%----------------------------------------------------------------------------------------
-%	PUBLICATIONS
-%----------------------------------------------------------------------------------------
-\section{Publications}
-\begin{refsection}[citations.bib]
-\nocite{*}
-\printbibliography[heading=none]
-\end{refsection}
-
-%----------------------------------------------------------------------------------------
-%	SKILLS
-%----------------------------------------------------------------------------------------
-\section{Skills}
-\begin{tabularx}{\linewidth}{@{}l X@{}}
-Some Skills &  \normalsize{This, That, Some of this and that etc.}\\
-Some More Skills  &  \normalsize{Also some more of this, Some more that, And some of this and that etc.}\\  
-\end{tabularx}
-
-\vfill
-\center{\footnotesize Last updated: \today}
-
+	
+	% non-numbered pages
+	\pagestyle{empty} 
+	
+	%----------------------------------------------------------------------------------------
+	%	TITLE
+	%----------------------------------------------------------------------------------------
+	\digitaltrue
+	
+	% if not digital
+	\ifdigital
+	\else
+	% change hyperlinks to black everywhere
+	\definecolor{linkcolour}{rgb}{0,0,0}
+	\hypersetup{urlcolor=linkcolour}
+	\fi
+	
+	\begin{tabularx}{\linewidth}{@{} C @{}}
+		\Huge{Linyi (Tiger) Hou} \\[7.5pt]
+		% \faPhone\,+1 (000) 000-0000 \\[2.5pt]
+		\ifdigital
+		\href{mailto:linyih2@illinois.edu}{\raisebox{-0.05\height}\faEnvelope \ Email}
+		\ $|$ \ Talbot Laboratory, 104 S Wright St, Urbana IL 61801, USA
+		\ $|$ \ \href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ GitHub} \\
+		\else
+		% change hyperlink color to black everywhere
+		\href{mailto:linyih2@illinois.edu}{\raisebox{-0.05\height}\faEnvelope \ linyih2@illinois.edu} \\
+		\href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ https://github.com/TigerHou2} \ $|$ \
+		Talbot Laboratory, 104 S Wright St, Urbana IL 61801, USA \\
+		\fi
+	\end{tabularx}
+	
+	%----------------------------------------------------------------------------------------
+	%	EDUCATION
+	%----------------------------------------------------------------------------------------
+	\section{Education}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+		Ph.D. in Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill Jun 2021 - present \\
+		B.S. in AE, Minor in CompE, University of Illinois Urbana-Champaign & \hfill Aug 2017 - May 2021 \\
+	\end{tabularx}
+	
+	%----------------------------------------------------------------------------------------
+	% EXPERIENCE SECTIONS
+	%----------------------------------------------------------------------------------------
+	
+	% Work Experience
+	\section{Work Experience}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		\textbf{University of Illinois Urbana-Champaign} & \hfill \\[3.75pt]
+		Teaching Assistant (AE 202, AE 443, AE 483) & \hfill Jun 2021 - present \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+					\item[--] Assisted in developing firmware and software for a quadrotor-based control systems course in C and Python.
+					\item[--] Taught fundamentals of orbital mechanics, flight mechanics, and systems engineering to undergraduates.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		\textbf{Collins Aerospace} & \hfill \\[3.75pt]
+		Software Engineering Intern & \hfill May 2019 - Aug 2019 \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+					\item[--] Expanded OS compatibility and upgraded UI for an avionics data interpreter tool using Python and C++.
+					\item[--] Automated weekly builds using Python with TortoiseSVN, reducing manual labor by one hour per week.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	% Research Experience
+	\section{Research Experience}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		\textbf{Astrodynamics and Planetary Exploration Group (APEX)} & \hfill Advisor: Dr. Siegfried Eggl \\[3.75pt]
+		Lost-in-space-and-time Navigation using Variable Stars & \hfill Nov 2022 - present \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+					\item[--] Developed an optical navigation technique for autonomous spacecraft navigation without knowledge of time and position using only commercial off-the-shelf (COTS) star trackers.
+					\item[--] Assessed algorithm performance using Monte Carlo simulation, demonstrated feasibility of reestablishing Earth contact using the proposed method.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		\textbf{Aerospace Mission Analysis Laboratory} & \hfill Advisor: Dr. Zachary R. Putnam \\[3.75pt]
+		Lost-in-space X-ray Pulsar Navigation & \hfill Jun 2021 - present \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+					\item[--] Developed an ambiguity resolution algorithm for identifying spacecraft position, with considerations for geometric and relativistic time delays in pulsar timing.
+					\item[--] Developed a simulation framework in C++, Python, and GMAT for simulating pulsar-based navigation.
+					\item[--] Demonstrated feasibility of performing ambiguity resolution in context of the lost-in-space problem.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+	Velocity-based Initial Orbit Determination & \hfill Aug 2019 - present \\[3.75pt]
+	\multicolumn{2}{@{}X@{}}{
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+				\item[--] Developed a new initial orbit determination (IOD) technique using sequential range-rate measurements. 
+				\item[--] Assessed the performance of various velocity-based IOD methods using Monte Carlo simulation.
+			\end{itemize}
+		\end{minipage}
+	}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		\textbf{Space Systems Optimization Laboratory} & \hfill Advisor: Dr. Koki Ho \\[3.75pt]
+		Architecture Trade Studies on IRSU Technologies for Human Space Exploration & \hfill Sep 2018 - Sep 2019 \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
+					\item[--] Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	
+	%----------------------------------------------------------------------------------------
+	%	SKILLS
+	%----------------------------------------------------------------------------------------
+	\section{Skills}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+		Programming Languages  &  Python, C/C++, MATLAB \\[3.75pt]
+		Software/Prepackaged Tools  &  \LaTeX, Git, GMAT \\[3.75pt]
+		Operating Systems  &  Linux, MacOS, Windows \\[3.75pt]
+		Languages  &  English, Mandarin Chinese \\[3.75pt]
+	\end{tabularx}
+	
+	%----------------------------------------------------------------------------------------
+	%	AWARDS/AFFILIATIONS
+	%----------------------------------------------------------------------------------------
+	\section{Awards}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{Best Student Paper, 46\textsuperscript{th} AAS GN\&C Conference} & \hfill Feb 2024 \\[3.75pt]
+	American Astronautical Society (AAS) Rocky Mountain Section & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{Yee Fellowship} & \hfill Fall 2021 - Spring 2022 \\[3.75pt]
+	Grainger College of Engineering, University of Illinois Urbana-Champaign & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{David and Catherine Thompson Space Technology Scholarship} & \hfill Jun 2020 \\[3.75pt]
+	American Institute of Aeronautics and Astronautics (AIAA) & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{H.S. Stillwell Problem Solving Award} & \hfill Mar 2020 \\[3.75pt]
+	Department of Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{Robert W. McCloy Memorial Award} & \hfill Mar 2019 \\[3.75pt]
+	Department of Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{Dean's List} & \hfill Fall 2017 - Spring 2021 \\[3.75pt]
+	University of Illinois Urbana-Champaign & \hfill \\[3.75pt]
+	\end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{James Scholar} & \hfill Spring 2018 - Spring 2021 \\[3.75pt]
+	University of Illinois Urbana-Champaign & \hfill \\[3.75pt]
+	\end{tabularx}
+	
+	%----------------------------------------------------------------------------------------
+	%	PUBLICATIONS
+	%----------------------------------------------------------------------------------------
+%	\newpage
+	\section{Journal Articles}
+	% \vspace{0.05in}
+	% \begin{center}
+		% \textsc{Significant Author}
+		% \end{center}
+	\begin{refsection}[pub_journal.bib]
+		\nocite{*}
+		\printbibliography[heading=none]
+	\end{refsection}
+	
+	% \vspace{0.05in}
+	% \begin{center}
+		% \textsc{Supporting Author}
+		% \end{center}
+	% \begin{refsection}[pub_journal_sec.bib]
+		% \nocite{*}
+		% \printbibliography[heading=none]
+		% \end{refsection}
+	
+	\section{Conference Proceedings}
+	\begin{refsection}[pub_conference.bib]
+		\nocite{*}
+		\printbibliography[heading=none]
+	\end{refsection}
+	
+	%----------------------------------------------------------------------------------------
+	%	LAST UPDATED
+	%----------------------------------------------------------------------------------------
+	\vfill
+	\center{\footnotesize Last updated: \today}
+	
 \end{document}
