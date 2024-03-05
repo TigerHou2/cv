@@ -6,4 +6,5 @@
 *.out
 *.run.xml
 *.synctex.gz
+*.txss2
 .DS_Store
