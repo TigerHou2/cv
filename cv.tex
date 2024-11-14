@@ -37,12 +37,23 @@
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
 \usepackage[scale=0.9]{geometry}
+\usepackage{siunitx}
 
 %tabularx environment
 \usepackage{tabularx}
 
 %for lists within experience section
+% lots of options here for bullet style: https://latex-tutorial.com/bullet-styles/
+\usepackage{amssymb} % $\blacktriangleright$
+\usepackage{pifont}  % \ding{}
 \usepackage{enumitem}
+\setlist[itemize]{
+	nosep,
+	label=\ding{118},%\raisebox{0.5ex}{\tiny$\blacktriangleright$},
+	after=\strut, 
+	leftmargin=1.5em, 
+	itemsep=3pt
+}
 
 % centered version of 'X' col. type
 \newcolumntype{C}{>{\centering\arraybackslash}X} 
@@ -149,9 +160,9 @@
 		Teaching Assistant (AE 202, AE 443, AE 483) & \hfill Jun 2021 - present \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-					\item[--] Assisted in developing firmware and software for a quadrotor-based control systems course in C and Python.
-					\item[--] Taught fundamentals of orbital mechanics, flight mechanics, and systems engineering to undergraduates.
+				\begin{itemize}
+					\item Taught lessons or held office hours for courses in flight mechanics, systems engineering, and UAV controls.
+					\item Assisted in developing firmware, software, and instructions for a UAV lab based on C and Python.
 				\end{itemize}
 			\end{minipage}
 		}
@@ -162,25 +173,49 @@
 		Software Engineering Intern & \hfill May 2019 - Aug 2019 \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-					\item[--] Expanded OS compatibility and upgraded UI for an avionics data interpreter tool using Python and C++.
-					\item[--] Automated weekly builds using Python with TortoiseSVN, reducing manual labor by one hour per week.
+				\begin{itemize}
+					\item Migrated an avionics data interpreter from 16-bit to 32-bit using C++ and Python.
+					\item Automated weekly builds in TortoiseSVN using Python, reducing need for manual integration.
 				\end{itemize}
 			\end{minipage}
 		}
 	\end{tabularx}
 	
 	% Research Experience
-	\section{Research Experience}
+	\section{Research}
 	
 	\begin{tabularx}{\linewidth}{ @{}l r@{} }
 		\textbf{Astrodynamics and Planetary Exploration Group (APEX)} & \hfill Advisor: Dr. Siegfried Eggl \\[3.75pt]
-		Lost-in-space-and-time Navigation using Variable Stars & \hfill Nov 2022 - present \\[3.75pt]
+		Interstellar Navigation and Star Identification & \hfill Sep 2024 - present \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-					\item[--] Developed an optical navigation technique for autonomous spacecraft navigation without knowledge of time and position using only commercial off-the-shelf (COTS) star trackers.
-					\item[--] Assessed algorithm performance using Monte Carlo simulation, demonstrated feasibility of reestablishing Earth contact using the proposed method.
+				\begin{itemize}
+					\item Investigating feasibility of star identification (star-ID) at relativistic speeds and interstellar distances by combining traditional star-ID algorithms with clustering algorithms based on stellar classification.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		Celestial Navigation to Supplement DSN Tracking of OSIRIS-APEX & \hfill Jul 2024 - present \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Assessing feasibility of using celestial (asteroid) navigation to meet cruise phase uncertainty requirements.
+					\item Designing sensor tasking/scheduling algorithms with novel considerations for covariance propagation and visibility constraints over the time domain.
+					\item Implemented spherical harmonics for an open source orbit propagator to analyze cislunar missions.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l r@{} }
+		Lost in Space and Time Navigation using Variable Stars & \hfill Nov 2022 - present \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Developed an autonomous optical navigation technique based on light curve analysis of variable stars which does not require prior knowledge of position or time.
+					\item Performed Monte Carlo analysis to conclude that reestablishing Earth contact via the proposed method using only commercial off-the-shelf (COTS) star trackers is possible.
 				\end{itemize}
 			\end{minipage}
 		}
@@ -188,25 +223,25 @@
 	
 	\begin{tabularx}{\linewidth}{ @{}l r@{} }
 		\textbf{Aerospace Mission Analysis Laboratory} & \hfill Advisor: Dr. Zachary R. Putnam \\[3.75pt]
-		Lost-in-space X-ray Pulsar Navigation & \hfill Jun 2021 - present \\[3.75pt]
+		Lost in Space X-ray Pulsar Navigation & \hfill Jun 2021 - present \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-					\item[--] Developed an ambiguity resolution algorithm for identifying spacecraft position, with considerations for geometric and relativistic time delays in pulsar timing.
-					\item[--] Developed a simulation framework in C++, Python, and GMAT for simulating pulsar-based navigation.
-					\item[--] Demonstrated feasibility of performing ambiguity resolution in context of the lost-in-space problem.
+				\begin{itemize}
+					\item Developed an efficient algorithm that resolves spacecraft position and time from pulsar timing data.
+					\item Created a photon time of arrival simulation tool in Python to synthesize the observed light curves of variable stars; validated results against the pulsar timing package \href{https://nanograv-pint.readthedocs.io/en/latest/}{PINT} to within \qty{50}{\micro\s}.
+					\item Demonstrated the computational feasibility of X-ray pulsar navigation in a lost in space scenario.
 				\end{itemize}
 			\end{minipage}
 		}
 	\end{tabularx}
 	
 	\begin{tabularx}{\linewidth}{ @{}l r@{} }
-	Velocity-based Initial Orbit Determination & \hfill Aug 2019 - present \\[3.75pt]
+	Velocity-based Initial Orbit Determination & \hfill Aug 2019 - Apr 2024 \\[3.75pt]
 	\multicolumn{2}{@{}X@{}}{
 		\begin{minipage}[t]{\linewidth}
-			\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-				\item[--] Developed a new initial orbit determination (IOD) technique using sequential range-rate measurements. 
-				\item[--] Assessed the performance of various velocity-based IOD methods using Monte Carlo simulation.
+			\begin{itemize}
+				\item Developed a new initial orbit determination (IOD) technique using sequential range-rate measurements. 
+				\item Assessed the performance of various velocity-based IOD methods using Monte Carlo simulation.
 			\end{itemize}
 		\end{minipage}
 	}
@@ -217,8 +252,8 @@
 		Architecture Trade Studies on IRSU Technologies for Human Space Exploration & \hfill Sep 2018 - Sep 2019 \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}[nosep,after=\strut, leftmargin=1em, itemsep=3pt]
-					\item[--] Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
+				\begin{itemize}
+					\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
 				\end{itemize}
 			\end{minipage}
 		}
