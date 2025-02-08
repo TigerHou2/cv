@@ -5,6 +5,7 @@ on: [push]
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
     env:
       # Edit here with the names of your latex file and directory (can use ".")
       DIR: .
