@@ -24,6 +24,9 @@
 % ]
 % {Fontin.otf}
 
+% allows use of pipe symbol |
+\usepackage[T1]{fontenc}
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES
 %----------------------------------------------------------------------------------------
@@ -145,13 +148,65 @@
 	%----------------------------------------------------------------------------------------
 	\section{Education}
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Ph.D. in Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill Jun 2021 - present \\
+		Ph.D. in Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill Exp. May 2025 \\
 		B.S. in AE, Minor in CompE, University of Illinois Urbana-Champaign & \hfill Aug 2017 - May 2021 \\
+	\end{tabularx}
+	
+	
+	%----------------------------------------------------------------------------------------
+	%	SKILLS
+	%----------------------------------------------------------------------------------------
+	\section{Skills}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+		Programming Languages  &  Python, C/C++, MATLAB/Simulink, Javascript \\[3.75pt]
+		Libraries  &  numpy\,|\,astropy\,|\,scipy\,|\,pybind11, Eigen\,|\,OpenMP \\[3.75pt]
+		Tools  &  Git, GitHub, GMAT, Slurm, ADQL \\[3.75pt]
+		Operating Systems  &  Linux, MacOS, Windows, FreeRTOS \\[3.75pt]
 	\end{tabularx}
 	
 	%----------------------------------------------------------------------------------------
 	% EXPERIENCE SECTIONS
 	%----------------------------------------------------------------------------------------
+	
+	% tailored section
+	\section{Highlights for GN\&C Position}
+	
+	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
+		\textbf{Deep Space Navigation} & \hfill \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Designed, implemented, and analyzed novel PNT algorithms culminating in three journal publications.
+					\item Proficient in unscented Kalman filtering for astrodynamics applications.
+					\item Experienced in the modeling and simulation of sensors (navigation cameras and star trackers), system dynamics (orbital mechanics), and the space environment (spherical harmonics).
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
+		\textbf{UAV Navigation and Control} & \hfill \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Implemented an LQR controller and observer in FreeRTOS. 
+					\item Helped students formulate and implement state-space model controllers with various sensor configurations, including gyroscopes, laser rangefinders, optical flow sensors, and time-of-flight anchors.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
+	
+	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
+		\textbf{Student Projects} & \hfill \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item NASA RASC-AL Competition: led a team of 10+ peers to develop a reusable lunar lander concept.
+					\item Space Grant Midwest High Power Rocketry Competition: led an avionics team to design, manufacture, and implement a flap-based roll control system that uses gyro and magnetometer data.
+				\end{itemize}
+			\end{minipage}
+		}
+	\end{tabularx}
 	
 	% Work Experience
 	\section{Work Experience}
@@ -203,7 +258,7 @@
 			\begin{minipage}[t]{\linewidth}
 				\begin{itemize}
 					\item Collaborating with four colleagues to assess feasibility of using celestial navigation to meet cruise phase uncertainty requirements in heliocentric and cislunar space.
-					\item Designing sensor tasking/scheduling algorithms with novel considerations for covariance propagation and visibility constraints over the time domain.
+					\item Designing sensor tasking/scheduling algorithms with novel considerations for clustered observations and visibility constraints.
 					\item Implemented spherical harmonics for an open source orbit propagator in C++.
 				\end{itemize}
 			\end{minipage}
@@ -230,7 +285,7 @@
 				\begin{itemize}
 					\item Developed algorithms to resolve spacecraft position and time from pulsar timing data.
 					\item Created a photon time of arrival simulation tool in Python and validated results against the pulsar timing package \href{https://nanograv-pint.readthedocs.io/en/latest/}{PINT} to within \qty{50}{\micro\s}.
-					\item Demonstrated the computational feasibility of (XNAV) in a lost in space scenario.
+					\item Demonstrated the computational feasibility of XNAV in a lost in space scenario.
 				\end{itemize}
 			\end{minipage}
 		} & \hfill
@@ -248,30 +303,18 @@
 		} & \hfill
 	\end{tabularx}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Space Systems Optimization Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Koki Ho} \\[3.75pt]
-		\textit{Architecture Trade Studies on ISRU Technologies for Human Space Exploration} & \multicolumn{2}{@{}r@{}}{Sep 2018 - Sep 2019} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Worked with two graduate students to discuss the development of a mixed-integer linear programming framework for space logistics optimization.
-					\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
-	
-	%----------------------------------------------------------------------------------------
-	%	SKILLS
-	%----------------------------------------------------------------------------------------
-	\section{Skills}
-	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Programming Languages  &  Python, C/C++, MATLAB, Javascript \\[3.75pt]
-		Software/Prepackaged Tools  &  \LaTeX, Git, GMAT \\[3.75pt]
-		Operating Systems  &  Linux, MacOS, Windows \\[3.75pt]
-		Languages  &  English, Mandarin Chinese \\[3.75pt]
-	\end{tabularx}
+	% \begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
+	% 	\textbf{Space Systems Optimization Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Koki Ho} \\[3.75pt]
+	% 	\textit{Architecture Trade Studies on ISRU Technologies for Human Space Exploration} & \multicolumn{2}{@{}r@{}}{Sep 2018 - Sep 2019} \\[3.75pt]
+	% 	\multicolumn{2}{@{}X@{}}{
+	% 		\begin{minipage}[t]{\linewidth}
+	% 			\begin{itemize}
+	% 				\item Worked with two graduate students to discuss the development of a mixed-integer linear programming framework for space logistics optimization.
+	% 				\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
+	% 			\end{itemize}
+	% 		\end{minipage}
+	% 	} & \hfill
+	% \end{tabularx}
 	
 	%----------------------------------------------------------------------------------------
 	%	AWARDS/AFFILIATIONS
