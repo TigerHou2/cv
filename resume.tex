@@ -27,6 +27,9 @@
 % allows use of pipe symbol |
 \usepackage[T1]{fontenc}
 
+% font choice
+% \usepackage[default]{sourcesanspro}
+
 %----------------------------------------------------------------------------------------
 %	PACKAGES
 %----------------------------------------------------------------------------------------
@@ -158,9 +161,9 @@
 	%----------------------------------------------------------------------------------------
 	\section{Skills}
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Programming Languages  &  Python, C/C++, MATLAB/Simulink, Javascript \\[3.75pt]
+		Programming Languages  &  Python, C++, MATLAB/Simulink \\[3.75pt]
 		Libraries  &  numpy\,|\,astropy\,|\,scipy\,|\,pybind11, Eigen\,|\,OpenMP \\[3.75pt]
-		Tools  &  Git, GitHub, GMAT, Slurm, ADQL \\[3.75pt]
+		Tools  &  Git, GitHub, GMAT, Slurm \\[3.75pt]
 		Operating Systems  &  Linux, MacOS, Windows, FreeRTOS \\[3.75pt]
 	\end{tabularx}
 	
@@ -169,79 +172,21 @@
 	%----------------------------------------------------------------------------------------
 	
 	% tailored section
-	\section{Highlights for GN\&C Position}
+	\section{Highlights for State Estimation and Modeling Engineer}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
-		\textbf{Deep Space Navigation} & \hfill \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Designed, implemented, and analyzed novel PNT algorithms culminating in three journal publications.
-					\item Proficient in unscented Kalman filtering for astrodynamics applications.
-					\item Experienced in the modeling and simulation of sensors (navigation cameras and star trackers), system dynamics (orbital mechanics), and the space environment (spherical harmonics).
-				\end{itemize}
-			\end{minipage}
-		}
-	\end{tabularx}
+	\begin{itemize}
+		\item Proficient in using C++/Python-driven simulations to evaluate the performance of navigation algorithms.
+		\item Experienced in high-precision timing and positioning in the context of X-ray pulsar navigation.
+		\item Experienced in the modeling and simulation of sensors (navigation cameras and star trackers), system dynamics (orbital mechanics), and the space environment (spherical harmonics).
+		\item Designed, implemented, and analyzed novel PNT techniques culminating in three journal publications.
+	\end{itemize}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
-		\textbf{UAV Navigation and Control} & \hfill \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Implemented an LQR controller and observer in FreeRTOS. 
-					\item Helped students formulate and implement state-space model controllers with various sensor configurations, including gyroscopes, laser rangefinders, optical flow sensors, and time-of-flight anchors.
-				\end{itemize}
-			\end{minipage}
-		}
-	\end{tabularx}
+	% Combined Experience section
+	\section{Experience}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{}}
-		\textbf{Student Projects} & \hfill \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item NASA RASC-AL Competition: led a team of 10+ peers to develop a reusable lunar lander concept.
-					\item Space Grant Midwest High Power Rocketry Competition: led an avionics team to design, manufacture, and implement a flap-based roll control system that uses gyro and magnetometer data.
-				\end{itemize}
-			\end{minipage}
-		}
-	\end{tabularx}
-	
-	% Work Experience
-	\section{Work Experience}
-	
+
 	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{University of Illinois Urbana-Champaign} & \hfill & \hfill \\[3.75pt]
-		\textit{Teaching Assistant (AE 202, AE 443, AE 483)} & \multicolumn{2}{@{}r@{}}{Jun 2021 - present} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Worked with 2-5 faculty and staff to teach lessons, hold office hours, and improve curriculum for courses in flight mechanics, systems engineering, and UAV controls.
-					\item Assisted in developing code and instructions for a UAV lab based on C and Python.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Collins Aerospace} & \hfill & \hfill \\[3.75pt]
-		\textit{Software Engineering Intern} & \multicolumn{2}{@{}r@{}}{May 2019 - Aug 2019} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Migrated an avionics data interpreter from 16-bit to 32-bit using C++ and Python.
-					\item Automated builds in TortoiseSVN using Python, reducing need for manual integration.\strut
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
-	% Research Experience
-	\section{Research}
-	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Astrodynamics and Planetary Exploration Group (APEX)} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Siegfried Eggl} \\[3.75pt]
+		\multicolumn{3}{@{}l@{}}{\textbf{Graduate Researcher, Astrodynamics and Planetary Exploration Group (APEX)}} \\[3.75pt]
 		\textit{Interstellar Navigation and Star Identification} & \multicolumn{2}{@{}r@{}}{Sep 2024 - present} \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
@@ -253,12 +198,12 @@
 	\end{tabularx}
 	
 	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textit{Celestial Navigation to Supplement DSN Tracking} & \multicolumn{2}{@{}r@{}}{Jul 2024 - present} \\[3.75pt]
+		\textit{Celestial Navigation to Supplement DSN Tracking} & \multicolumn{2}{@{}r@{}}{Jul 2024 - Mar 2025} \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
 				\begin{itemize}
-					\item Collaborating with four colleagues to assess feasibility of using celestial navigation to meet cruise phase uncertainty requirements in heliocentric and cislunar space.
-					\item Designing sensor tasking/scheduling algorithms with novel considerations for clustered observations and visibility constraints.
+					\item Collaborated with four colleagues to assess feasibility of using celestial navigation to meet cruise phase uncertainty requirements in heliocentric and cislunar space.
+					\item Designed sensor tasking/scheduling algorithms with novel considerations for covariance propagation and visibility constraints over the time domain.
 					\item Implemented spherical harmonics for an open source orbit propagator in C++.
 				\end{itemize}
 			\end{minipage}
@@ -266,7 +211,7 @@
 	\end{tabularx}
 	
 	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textit{Lost in Space and Time Navigation using Variable Stars} & \multicolumn{2}{@{}r@{}}{Nov 2022 - present} \\[3.75pt]
+		\textit{Lost in Space and Time Navigation using Variable Stars} & \multicolumn{2}{@{}r@{}}{Nov 2022 - Mar 2025} \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
 				\begin{itemize}
@@ -277,15 +222,17 @@
 		} & \hfill
 	\end{tabularx}
 	
+
+	\bigskip
 	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Aerospace Mission Analysis Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Zachary R. Putnam} \\[3.75pt]
-		\textit{Lost in Space X-ray Pulsar Navigation (XNAV)} & \multicolumn{2}{@{}r@{}}{Jun 2021 - present} \\[3.75pt]
+		\multicolumn{3}{@{}l@{}}{\textbf{Graduate Researcher, Aerospace Mission Analysis Laboratory}} \\[3.75pt]
+		\textit{X-ray Pulsar Navigation (XNAV)} & \multicolumn{2}{@{}r@{}}{Jun 2021 - Dec 2023} \\[3.75pt]
 		\multicolumn{2}{@{}X@{}}{
 			\begin{minipage}[t]{\linewidth}
 				\begin{itemize}
 					\item Developed algorithms to resolve spacecraft position and time from pulsar timing data.
-					\item Created a photon time of arrival simulation tool in Python and validated results against the pulsar timing package \href{https://nanograv-pint.readthedocs.io/en/latest/}{PINT} to within \qty{50}{\micro\s}.
-					\item Demonstrated the computational feasibility of XNAV in a lost in space scenario.
+					\item Created a photon time of arrival simulation tool in Python and validated results against the pulsar timing package \href{https://nanograv-pint.readthedocs.io/en/latest/}{PINT}.
+					% \item Demonstrated the computational feasibility of (XNAV) in a lost in space scenario.
 				\end{itemize}
 			\end{minipage}
 		} & \hfill
@@ -303,18 +250,34 @@
 		} & \hfill
 	\end{tabularx}
 	
-	% \begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-	% 	\textbf{Space Systems Optimization Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Koki Ho} \\[3.75pt]
-	% 	\textit{Architecture Trade Studies on ISRU Technologies for Human Space Exploration} & \multicolumn{2}{@{}r@{}}{Sep 2018 - Sep 2019} \\[3.75pt]
-	% 	\multicolumn{2}{@{}X@{}}{
-	% 		\begin{minipage}[t]{\linewidth}
-	% 			\begin{itemize}
-	% 				\item Worked with two graduate students to discuss the development of a mixed-integer linear programming framework for space logistics optimization.
-	% 				\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
-	% 			\end{itemize}
-	% 		\end{minipage}
-	% 	} & \hfill
-	% \end{tabularx}
+
+	\bigskip
+	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
+		\multicolumn{3}{@{}l@{}}{\textbf{Teaching Assistant, University of Illinois Urbana-Champaign}} \\[3.75pt]
+		\textit{AE 202, AE 443, AE 483} & \multicolumn{2}{@{}r@{}}{Jun 2021 - present} \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Worked with 2-5 faculty and staff to teach lessons, hold office hours, and improve curriculum for courses in flight mechanics, systems engineering, and UAV controls.
+					\item Assisted in developing code and instructions for a UAV lab based on C and Python.
+				\end{itemize}
+			\end{minipage}
+		} & \hfill
+	\end{tabularx}
+	
+
+	\bigskip
+	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
+		\textbf{SWE Intern, Collins Aerospace} & \multicolumn{2}{@{}r@{}}{May 2019 - Aug 2019} \\[3.75pt]
+		\multicolumn{2}{@{}X@{}}{
+			\begin{minipage}[t]{\linewidth}
+				\begin{itemize}
+					\item Migrated an avionics data interpreter from 16-bit to 32-bit using C++ and Python.
+					\item Automated builds in TortoiseSVN using Python, reducing need for manual integration.\strut
+				\end{itemize}
+			\end{minipage}
+		} & \hfill
+	\end{tabularx}
 	
 	%----------------------------------------------------------------------------------------
 	%	AWARDS/AFFILIATIONS
