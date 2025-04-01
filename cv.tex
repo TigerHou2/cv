@@ -73,22 +73,23 @@
 \titlespacing{\section}{0pt}{10pt}{10pt}
 
 %for publications
-\usepackage[backend=biber,style=phys,sorting=none]{biblatex}
+\usepackage[backend=biber,style=ieee,sorting=none,style=numeric]{biblatex}
+\setlength{\labelnumberwidth}{24pt}
+
 % no numbering
-\DeclareFieldFormat{labelnumberwidth}{}
-\setlength{\biblabelsep}{0pt}
-% %%%%%%%%%% begin reverse numbering for biblatex %%%%%%%%%%
-% % Count total number of entries in each refsection
-% \AtDataInput{
-% 	\csnumgdef{entrycount:\therefsection}{
-% 		\csuse{entrycount:\therefsection}+1}
-% }
-% % Print the labelnumber as the total number of entries in the
-% % current refsection, minus the actual labelnumber, plus one
-% \DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}    
-% \newrobustcmd*{\mkbibdesc}[1]{%
-% 	\number\numexpr\csuse{entrycount:\therefsection}+1-#1\relax}
-% %%%%%%%%%% end reverse numbering for biblatex %%%%%%%%%%
+% \DeclareFieldFormat{labelnumberwidth}{}
+% \setlength{\biblabelsep}{0pt}
+
+% reverse numbering (https://tex.stackexchange.com/a/22770)
+	% Count total number of entries in each refsection
+\AtDataInput{%
+  \csnumgdef{entrycount:\therefsection}{%
+    \csuse{entrycount:\therefsection}+1}}
+	% Print the labelnumber as the total number of entries in the
+	% current refsection, minus the actual labelnumber, plus one
+\DeclareFieldFormat{labelnumber}{\mkbibdesc{#1}}
+\newrobustcmd*{\mkbibdesc}[1]{%
+  \number\numexpr\csuse{entrycount:\therefsection}+1-#1\relax}
 
 %Setup hyperref package, and colours for links
 \usepackage[unicode, draft=false]{hyperref}
@@ -96,7 +97,7 @@
 \hypersetup{colorlinks,breaklinks,urlcolor=linkcolour,linkcolor=linkcolour}
 \addbibresource{pub_journal.bib}
 \addbibresource{pub_conference.bib}
-\setlength\bibitemsep{1em}
+\setlength\bibitemsep{5pt}
 
 %for social icons
 \usepackage{fontawesome5}
@@ -127,27 +128,37 @@
 	
 	\begin{tabularx}{\linewidth}{@{} H @{}}
 		\Huge{Linyi (Tiger) Hou} \\[7.5pt]
-		% \faPhone\,+1 (000) 000-0000 \\[2.5pt]
-		\ifdigital
 		\href{mailto:linyih2@illinois.edu}{\raisebox{-0.05\height}\faEnvelope \ linyih2@illinois.edu}
-		% \ $|$ \ Talbot Laboratory, 104 S Wright St, Urbana IL 61801, USA
-		\ $|$ \ \href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ github.com/TigerHou2} \\
-		\else
-		% change hyperlink color to black everywhere
-		\href{mailto:linyih2@illinois.edu}{\raisebox{-0.05\height}\faEnvelope \ linyih2@illinois.edu} \\
-		\href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ https://github.com/TigerHou2} \ $|$ \
-		Talbot Laboratory, 104 S Wright St, Urbana IL 61801, USA \\
-		\fi
+		\ $|$ \ \href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ github.com/TigerHou2}
+		\ $|$ \ Permanent Resident \\
 	\end{tabularx}
 	
+
+
+
+
+
 	%----------------------------------------------------------------------------------------
-	%	EDUCATION
+	% EDUCATION
 	%----------------------------------------------------------------------------------------
 	\section{Education}
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
 		Ph.D. in Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill Jun 2021 - present \\
 		B.S. in AE, Minor in CompE, University of Illinois Urbana-Champaign & \hfill Aug 2017 - May 2021 \\
 	\end{tabularx}
+
+
+
+
+
+	%----------------------------------------------------------------------------------------
+	% SUMMARY
+	%----------------------------------------------------------------------------------------
+	% \section{Summary}
+	% Researcher with experience in astrodynamics, celestial navigation, orbit determination, and spacecraft autonomy. 
+
+
+
 	
 	%----------------------------------------------------------------------------------------
 	% EXPERIENCE SECTIONS
@@ -320,30 +331,17 @@
 	%----------------------------------------------------------------------------------------
 	%	PUBLICATIONS
 	%----------------------------------------------------------------------------------------
-%	\newpage
-	\section{Journal Articles}
-	% \vspace{0.05in}
-	% \begin{center}
-		% \textsc{Significant Author}
-		% \end{center}
+
 	\begin{refsection}[pub_journal.bib]
+		\DeclareFieldFormat{labelnumber}{J.\mkbibdesc{#1}}
 		\nocite{*}
-		\printbibliography[heading=none]
+		\printbibliography[title={Journal Articles}]
 	\end{refsection}
 	
-	% \vspace{0.05in}
-	% \begin{center}
-		% \textsc{Supporting Author}
-		% \end{center}
-	% \begin{refsection}[pub_journal_sec.bib]
-		% \nocite{*}
-		% \printbibliography[heading=none]
-		% \end{refsection}
-	
-	\section{Conference Proceedings}
 	\begin{refsection}[pub_conference.bib]
+		\DeclareFieldFormat{labelnumber}{C.\mkbibdesc{#1}} 
 		\nocite{*}
-		\printbibliography[heading=none]
+		\printbibliography[title={Conference Proceedings}]
 	\end{refsection}
 	
 	%----------------------------------------------------------------------------------------
