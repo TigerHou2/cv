@@ -34,20 +34,32 @@
 \RequirePackage{color}
 \RequirePackage{graphicx}
 \usepackage[usenames,dvipsnames]{xcolor}
-\usepackage[scale=0.9]{geometry}
+\usepackage[scale=0.9,headsep=0pt]{geometry}
 \usepackage{siunitx}
+\usepackage{lastpage}
+\usepackage{fancyhdr}
+\fancypagestyle{firstpage}{
+	\fancyhf{}
+	\renewcommand{\headrulewidth}{0pt}
+	\cfoot{Page {\thepage} of \pageref{LastPage}}
+}
+\fancypagestyle{regular}{
+	\pagestyle{firstpage}
+	\rhead{Linyi (Tiger) Hou}
+}
+\fancypagestyle{lastpage}{
+	\pagestyle{regular}
+	\rfoot{\footnotesize Last updated: \today}
+}
+\pagestyle{regular}
 
 %tabularx environment
-\usepackage{tabularx,stackengine,collcell}
-% https://tex.stackexchange.com/a/478054
-\let\endminwd\relax
-\newcolumntype{L}[1]{>{\collectcell\xminwd l{#1}}l<{\endminwd\endcollectcell}}
-\newcolumntype{C}[1]{>{\collectcell\xminwd c{#1}}c<{\endminwd\endcollectcell}}
-\newcolumntype{R}[1]{>{\collectcell\xminwd r{#1}}r<{\endminwd\endcollectcell}}
-\def\minwd#1#2#3\endminwd{\stackengine{0pt}{#3}{\rule{#2}{0pt}}{O}{#1}{F}{F}{L}}
-\newcommand\xminwd[1]{\minwd#1}
+\usepackage{tabularx}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\arraybackslash}p{#1}}
 % centered version of 'X' col. type
-\newcolumntype{H}{>{\centering\arraybackslash}X} 
+\newcolumntype{H}{>{\centering\arraybackslash}X}
+\usepackage{makecell}
 
 %for lists within experience section
 % lots of options here for bullet style: https://latex-tutorial.com/bullet-styles/
@@ -62,6 +74,44 @@
 	itemsep=3pt
 }
 
+% experience boilerplates
+\NewDocumentEnvironment{WorkExperience}{mmmm +b}{
+	\begin{tabularx}{\linewidth}{ @{} L{0.86\linewidth} @{}X@{} r @{} }
+		\textbf{#1} & &
+		\multirow{2}{*}{\makecell[r]{#2 \\ -- #3}} \\[3.75pt]
+		\textit{#4} & & \\[3.75pt]
+		\begin{minipage}[t]{\linewidth}
+			\begin{itemize}
+				#5
+			\end{itemize}
+		\end{minipage} & &
+	\end{tabularx}
+}{}
+
+\NewDocumentEnvironment{ResearchExperience}{mmm +b}{
+  \begin{tabularx}{\linewidth}{@{} L{0.86\linewidth} @{}X@{} r @{}}
+    \textit{#1} & &
+    \multirow{2}{*}{\makecell[r]{#2 \\ -- #3}} \\[3.75pt]
+    \begin{minipage}[t]{\linewidth}
+      \begin{itemize}
+        #4
+      \end{itemize}
+    \end{minipage} & &
+  \end{tabularx}
+}{}
+
+\NewDocumentEnvironment{ProjectExperience}{mm +b}{
+  \begin{tabularx}{\linewidth}{@{} L{0.86\linewidth} @{}X@{} r @{}}
+    \textit{#1} & &
+    \multirow{2}{*}{\makecell[r]{#2}} \\[3.75pt]
+    \begin{minipage}[t]{\linewidth}
+      \begin{itemize}
+        #3
+      \end{itemize}
+    \end{minipage} & &
+  \end{tabularx}
+}{}
+
 %custom \section
 \usepackage{titlesec}				
 \usepackage{multicol}
@@ -71,9 +121,11 @@
 %http://stefano.italians.nl/archives/26
 \titleformat{\section}{\Large\scshape\raggedright}{}{0em}{}[\titlerule]
 \titlespacing{\section}{0pt}{10pt}{10pt}
+\titleformat{\subsection}{\large\scshape\raggedright}{}{0em}{}
+\titlespacing{\subsection}{0pt}{5pt}{5pt}
 
 %for publications
-\usepackage[backend=biber,style=ieee,sorting=none,style=numeric]{biblatex}
+\usepackage[backend=biber,style=ieee,sorting=none,style=numeric,maxbibnames=99]{biblatex}
 \setlength{\labelnumberwidth}{24pt}
 
 % no numbering
@@ -122,18 +174,21 @@
 		\Huge{Linyi (Tiger) Hou} \\[7.5pt]
 		\href{mailto:linyih2@illinois.edu}{\raisebox{-0.05\height}\faEnvelope \ linyih2@illinois.edu}
 		\ $|$ \ \href{https://github.com/TigerHou2}{\raisebox{-0.05\height}\faGithub \ github.com/TigerHou2}
-		\ $|$ \ Permanent Resident \\
+		\ $|$ \ U.S. Permanent Resident \\
 	\end{tabularx}
 
 
 
 	%----------------------------------------------------------------------------------------
-	% EDUCATION
+	%	EDUCATION
 	%----------------------------------------------------------------------------------------
 	\section{Education}
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Ph.D. in Aerospace Engineering, University of Illinois Urbana-Champaign & \hfill Jun 2021 - present \\
-		B.S. in AE, Minor in CompE, University of Illinois Urbana-Champaign & \hfill Aug 2017 - May 2021 \\
+		\textbf{Ph.D. in Aerospace Engineering} & \hfill May 2025 \\
+		\multicolumn{2}{@{}l@{}}{University of Illinois Urbana-Champaign \hfill GPA: 3.94/4.00} \\
+		\multicolumn{2}{@{}l@{}}{Thesis: Autonomous Lost in Space and Time State Determination using Periodic Variable Stars} \\[3.75pt]
+		\textbf{B.S. in Aerospace Engineering, Minor in Computer Engineering} & \hfill May 2021 \\
+		\multicolumn{2}{@{}l@{}}{University of Illinois Urbana-Champaign \hfill GPA: 3.93/4.00} \\
 	\end{tabularx}
 	
 	
@@ -143,142 +198,126 @@
 	%----------------------------------------------------------------------------------------
 	\section{Skills}
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Technical  &  celestial navigation, astrodynamics, Kalman filtering, modeling \& simulation, data analysis \\[3.75pt]
+		Technical  &  batch filtering, Kalman filtering, Monte Carlo simulation, celestial navigation, orbit determination, spacecraft navigation modeling \\[3.75pt]
 		Collaboration  &  technical/proposal writing, MS Office suite, \LaTeX, Git, GitHub, Trello \\[3.75pt]
-		Programming  &  proficient: Python, C/C++, MATLAB \enspace$|$\quad beginner: Simulink, Javascript, ADQL \\[3.75pt]
+		Programming  &  Python, C/C++, MATLAB/Simulink, GMAT, Javascript, Julia \\[3.75pt]
 	\end{tabularx}
 
 
 	
 	%----------------------------------------------------------------------------------------
-	% EXPERIENCE SECTIONS
+	% RESEARCH
 	%----------------------------------------------------------------------------------------
 	
-	% Work Experience
-	\section{Work Experience}
-	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{University of Illinois Urbana-Champaign} & \hfill & \hfill \\[3.75pt]
-		\textit{Teaching Assistant (AE 202, AE 443, AE 483)} & \multicolumn{2}{@{}r@{}}{Jun 2021 - May 2024} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Worked with 2-5 faculty and staff to teach lessons, hold office hours, and improve curriculum for courses in flight mechanics, systems engineering, and UAV controls.
-					\item Assisted in developing code and instructions for a UAV lab based on C and Python.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Collins Aerospace} & \hfill & \hfill \\[3.75pt]
-		\textit{Software Engineering Intern} & \multicolumn{2}{@{}r@{}}{May 2019 - Aug 2019} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Migrated an avionics data interpreter from 16-bit to 32-bit using C++ and Python.
-					\item Automated weekly builds and integration in TortoiseSVN using Python.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
-	% Research Experience
 	\section{Research}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Astrodynamics and Planetary Exploration Group (APEX)} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Siegfried Eggl} \\[3.75pt]
-		\textit{Interstellar Navigation and Star Identification} & \multicolumn{2}{@{}r@{}}{Sep 2024 - present} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Developing star identification techniques for interstellar travel at relativistic speeds by combining traditional algorithms with clustering based on stellar classification.\strut
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
+	\textbf{Astrodynamics and Planetary Exploration Group (APEX)} 
+	\hfill Advisor: Dr. Siegfried Eggl
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textit{Celestial Navigation to Supplement DSN Tracking} & \multicolumn{2}{@{}r@{}}{Jul 2024 - Mar 2025} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Collaborating with four colleagues to assess feasibility of using celestial navigation to meet cruise phase uncertainty requirements in heliocentric and cislunar space.
-					\item Designing sensor tasking/scheduling algorithms with novel considerations for covariance propagation and visibility constraints over the time domain.
-					\item Implemented spherical harmonics for an open source orbit propagator in C++.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
+	\begin{ResearchExperience}
+		{Interstellar Navigation and Star Identification}
+		{Sep 2024}{May 2025}
+			\item Developed a star identification technique using C++ which mitigates stellar aberration effects at relativistic speeds, improving star identification success rate from 38\% to 91\%.
+	\end{ResearchExperience}
+
+	\begin{ResearchExperience}
+		{Celestial Navigation to Supplement DSN Tracking}
+		{Jul 2024}{Mar 2025}
+			\item Collaborated with colleagues to create navigation simulation tools in Python to assess the feasibility of reducing Deep Space Network tracking cadence by using onboard celestial navigation for the OSIRIS-APEX and CAPSTONE missions.
+			\item Designed sensor scheduling algorithms for celestial navigation which reduced navigation uncertainty by over 10\% compared to existing strategies in Monte Carlo simulation. 
+			\item Implemented spherical harmonics for an open source orbit propagator in C++.
+	\end{ResearchExperience}
+
+	\begin{ResearchExperience}
+		{Lost in Space and Time Navigation using Variable Stars}
+		{Nov 2022}{Mar 2025}
+			\item Developed an autonomous optical navigation concept using variable star light curves which delivers timing accuracy within 1 second without needing prior position/time information.
+			\item Simulated star tracker observations and demonstrated the feasibility of reestablishing Earth pointing via the proposed method through Monte Carlo analysis.
+	\end{ResearchExperience}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textit{Lost in Space and Time Navigation using Variable Stars} & \multicolumn{2}{@{}r@{}}{Nov 2022 - Mar 2025} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Developed an autonomous optical navigation technique based on light curve analysis of variable stars which does not require prior knowledge of position or time.
-					\item Simulated star tracker observations and performed Monte Carlo analysis to assess the feasibility of reestablishing Earth pointing via the proposed method.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
+
+	\textbf{Aerospace Mission Analysis Laboratory} 
+	\hfill Advisor: Dr. Zachary R. Putnam
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Aerospace Mission Analysis Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Zachary R. Putnam} \\[3.75pt]
-		\textit{Lost in Space X-ray Pulsar Navigation (XNAV)} & \multicolumn{2}{@{}r@{}}{Jun 2021 - Dec 2023} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Developed algorithms to resolve spacecraft position and time from pulsar timing data.
-					\item Created a photon time of arrival simulation tool in Python and validated results against the pulsar timing package \href{https://nanograv-pint.readthedocs.io/en/latest/}{PINT} to within \qty{50}{\micro\s}.
-					\item Demonstrated the computational feasibility of (XNAV) in a lost in space scenario.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
+	\begin{ResearchExperience}
+		{Lost in Space X-ray Pulsar Navigation (XNAV)}
+		{Jun 2021}{Dec 2023}
+			\item Developed algorithms to resolve spacecraft position and time from pulsar timing data.
+			\item Created a photon time of arrival simulation tool in Python and validated simulation results against the pulsar timing package PINT to within \qty{50}{\micro\s}.
+	\end{ResearchExperience}
+
+	\begin{ResearchExperience}
+		{Velocity-based Initial Orbit Determination}
+		{Aug 2019}{Apr 2024}
+			\item Developed a novel initial orbit determination technique using batched sequential range-rate measurements that achieved over 10x better accuracy than state-of-the-art methods.\hspace{-1em}
+	\end{ResearchExperience}
+
+
+	\textbf{Space Systems Optimization Laboratory} 
+	\hfill Advisor: Dr. Koki Ho
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textit{Velocity-based Initial Orbit Determination} & \multicolumn{2}{@{}r@{}}{Aug 2019 - Apr 2024} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Developed a novel initial orbit determination (IOD) technique using sequential range-rate measurements to distant stars. 
-					\item Assessed the performance of velocity IOD methods using Monte Carlo simulation.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
+	\begin{ResearchExperience}
+		{Architecture Trade Studies on ISRU Technologies for Human Space Exploration}
+		{Sep 2018}{Sep 2019}
+			\item Worked with two graduate students to discuss the development of a mixed-integer linear programming framework for space logistics optimization.
+			\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
+	\end{ResearchExperience}
 	
-	\begin{tabularx}{\linewidth}{ @{}l @{}r@{} R{1.3in}@{} }
-		\textbf{Space Systems Optimization Laboratory} & \multicolumn{2}{@{}r@{}}{Advisor: Dr. Koki Ho} \\[3.75pt]
-		\textit{Architecture Trade Studies on ISRU Technologies for Human Space Exploration} & \multicolumn{2}{@{}r@{}}{Sep 2018 - Sep 2019} \\[3.75pt]
-		\multicolumn{2}{@{}X@{}}{
-			\begin{minipage}[t]{\linewidth}
-				\begin{itemize}
-					\item Worked with two graduate students to discuss the development of a mixed-integer linear programming framework for space logistics optimization.
-					\item Conducted literature review of in-situ resource utilization (ISRU) technologies to quantify input/output rates of technology options for an architecture optimization tool.
-				\end{itemize}
-			\end{minipage}
-		} & \hfill
-	\end{tabularx}
-	
+
 	
 	%----------------------------------------------------------------------------------------
-	%	SKILLS
+	% WORK
 	%----------------------------------------------------------------------------------------
-	\section{Skills}
-	\begin{tabularx}{\linewidth}{@{}l X@{}}
-		Programming \& Typesetting  &  Python, C/C++, MATLAB/Simulink, Javascript, \LaTeX \\[3.75pt]
-		Libraries \& Frameworks  &  astropy\,$|$\,scipy\,$|$\,pybind11, Eigen\,$|$\,OpenMP, NodeJS \\[3.75pt]
-		Tools \& Databases  &  Git, GitHub, Slurm, MongoDB, ADQL \\[3.75pt]
-	\end{tabularx}
 	
+	\section{Work Experience}
+	
+	\begin{WorkExperience}
+		{Teaching Assistant}
+		{Jun 2021}{May 2024}
+		{University of Illinois Urbana-Champaign (AE 202, AE 443, AE 483)}
+			\item Worked with 2-5 faculty and staff to teach lessons, hold office hours, and improve curriculum for courses in flight mechanics, systems engineering, and UAV controls.
+			\item Helped 20+ students formulate and implement UAV state-space model controllers with various sensors, e.g., laser rangefinders, optical flow cameras, and time-of-flight anchors.
+			\item Assisted in developing LQR control-related code and instructional materials for a UAV course using C and Python.
+	\end{WorkExperience}
+
+	\begin{WorkExperience}
+		{Software Engineering Intern}
+		{May 2019}{Aug 2019}
+		{Collins Aerospace}
+			\item Migrated an avionics data interpreter from 16-bit to 32-bit using C++ and Python.
+			\item Automated weekly builds and integration in TortoiseSVN using Python.
+	\end{WorkExperience}
+	
+
+	
+	%----------------------------------------------------------------------------------------
+	% PROJECTS
+	%----------------------------------------------------------------------------------------
+
+	\section{Projects}
+
+	\begin{ProjectExperience}
+		{Collaborative Projects in Flight Dynamics}
+		{2022, 2023\\\strut}
+			\item Planetary entry: Created a 3-DOF entry simulation to assess the flight performance of several novel Apollo-derived entry guidance algorithms at Mars.
+			\item Trajectory optimization: Applied optimal control theory to identify time- and fuel-optimal low-thrust Earth-Mars transfer trajectories. 
+	\end{ProjectExperience}
+
+	\begin{ProjectExperience}
+		{Team Lead/Advisor, NASA's RASC-AL Competition}
+		{2019, \\ 2022, 2023}
+			\item Led a team of 10+ students to develop a reusable crewed lunar lander concept (structure, power, thermal, life support, orbital mechanics, budget, etc.). 
+			\item Advised two student teams who developed technical requirements and performed trade studies for lunar and Martian in-situ resource utilization architectures. 
+	\end{ProjectExperience}
+
 
 
 	%----------------------------------------------------------------------------------------
 	%	AWARDS/AFFILIATIONS
 	%----------------------------------------------------------------------------------------
 	\section{Honors and Awards}
+
+	{\setlength{\parskip}{0.25\baselineskip}
 
 	\begin{tabularx}{\linewidth}{@{}l X@{}}
 		\textbf{Aerospace Engineering Alumni Advisory Board Fellowship} & \hfill 2024 \\
@@ -315,11 +354,13 @@
 	University of Illinois Urbana-Champaign & \hfill \\
 	\end{tabularx}
 
-	% \begin{tabularx}{\linewidth}{@{}l X@{}}
-	% \textbf{Dean's List} & \hfill 2017 - 2021 \\
-	% University of Illinois Urbana-Champaign & \hfill \\
-	% \end{tabularx}
+	\begin{tabularx}{\linewidth}{@{}l X@{}}
+	\textbf{Dean's List} & \hfill 2017 - 2021 \\
+	University of Illinois Urbana-Champaign & \hfill \\
+	\end{tabularx}
 	
+	}
+
 
 
 	%----------------------------------------------------------------------------------------
